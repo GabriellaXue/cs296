@@ -1,1 +1,3 @@
-# cs296arduino
+# cs296 Arduino activities
+
+code upload
