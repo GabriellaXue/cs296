@@ -1,3 +1,5 @@
 # cs296 Arduino activities
 
-code upload
+Please use the first file "Time_interrupt_revised.ino" for grading.
+That is the final modified version.
+Thanks!
