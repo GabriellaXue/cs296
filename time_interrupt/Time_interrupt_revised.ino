@@ -1,7 +1,5 @@
 int ledPin = 13;
 
-#define ledPin 13
-
 void setup()
 {
   pinMode(ledPin, OUTPUT);
