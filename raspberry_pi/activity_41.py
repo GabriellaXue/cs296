@@ -33,10 +33,11 @@ def loop(i):
     if sum(sample) > 0:
         
 #         nyq = 0.5 * FRAMES_PER_BUFFER
-#         b, a = butter(5, 250 / nyq, btype = "low")
+#         b, a = butter(2, [60/ nyq, 250 / nyq], btype = "band", analog = True)
 #         y = filtfilt(b, a, sample)
-#         print("reach")
-#         z = abs(np.fft.rft(y))
+#         print("This is y")
+#         print(y)
+
         window = np.hamming(data.size)
         result = window * data
         finalResult = np.fft.rfft(result, FRAMES_PER_BUFFER)
@@ -46,7 +47,12 @@ def loop(i):
         for i in range(1, len(log_scale)) :
             indices.append(int(np.sqrt(log_scale[i-1] * log_scale[i])))
         bins = np.split(finalResult, indices)
-        calc_base = np.mean(bins[0])
+        list = []
+        for elem in bins:
+            for i in range(0, len(elem)):
+                list.append(elem[i])
+        bins = np.array(list)
+        calc_base = np.mean(bins)
         print(calc_base)
         # <- @TODO replace this line with processed signal.
         base.set_radius(calc_base)
@@ -58,5 +64,6 @@ anim = animation.FuncAnimation(fig, loop,
                                frames=10, 
                                interval=10,
                                blit=True)
-
+plt.xlim(-500, 500)
+plt.ylim(-500, 500)
 plt.show()
